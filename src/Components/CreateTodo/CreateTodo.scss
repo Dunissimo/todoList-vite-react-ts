@@ -1,0 +1,16 @@
+.create-todo {
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+
+  background: #fff;
+  border-radius: 5px;
+
+  input {
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+  }
+}
