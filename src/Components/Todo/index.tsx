@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import { ChangeEventHandler, FC, useContext, useState } from "react";
+import { Context } from "../../utils/Context";
 import { ITodo } from "../../utils/interfaces";
 import "./Todo.scss";
 
@@ -7,27 +8,36 @@ interface IProps {
 }
 
 const Todo: FC<IProps> = ({ todo }) => {
-  const [checked, setChecked] = useState(todo.checked);
+  const {
+    view: { theme },
+    todos: { list, changeCheckedStatus, deleteTodo },
+  } = useContext(Context);
 
-  const changeHandler = () => {
-    setChecked((state) => !state);
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    changeCheckedStatus(todo.id, e.target.checked);
+  };
+  const clickHandler = () => {
+    changeCheckedStatus(todo.id, !todo.checked);
+  };
+  const deleteHandler = () => {
+    deleteTodo(todo.id);
   };
 
   return (
-    <section className={`todo ${checked ? "completed" : ""}`}>
+    <section className={`todo ${todo.checked ? "completed" : ""} ${theme}`}>
       <div className="body">
         <input
           className="custom-checkbox"
           type="checkbox"
-          checked={checked}
+          checked={todo.checked}
           id={`checkbox-${todo.id}`}
           value="complete"
           onChange={changeHandler}
         />
         <label htmlFor={`checkbox-${todo.id}`}></label>
-        <p onClick={changeHandler}>{todo.title}</p>
+        <p onClick={clickHandler}>{todo.title}</p>
       </div>
-      <div className="closing">
+      <div className="closing" onClick={deleteHandler}>
         <span className="line"></span>
         <span className="line"></span>
       </div>

@@ -1,38 +1,27 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import "./index.scss";
 import "./App.scss";
 import Header from "../Header";
 import CreateTodo from "../CreateTodo/CreateTodo";
 import TodoList from "../TodoList";
+import { Context } from "../../utils/Context";
 
 const App: FC = () => {
+  const {
+    view: { theme },
+  } = useContext(Context);
+
   return (
-    <div className="App">
-      <div className="bg"></div>
-      <div className="container">
-        <Header />
-        <CreateTodo />
-        <TodoList
-          list={[
-            {
-              checked: false,
-              title: "Create Todo List",
-              id: Math.random() * 100,
-            },
-            {
-              checked: false,
-              title: "Read for 1 hour",
-              id: Math.random() * 100,
-            },
-            {
-              checked: false,
-              title: "Learn Vite + Typescript",
-              id: Math.random() * 100,
-            },
-          ]}
-        />
+    <>
+      <div className={`App ${theme}`}>
+        <div className={`bg ${theme}`}></div>
+        <div className="container">
+          <Header />
+          <CreateTodo />
+          <TodoList />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@
   min-height: 100vh;
 
   padding-top: 5rem;
+  padding-bottom: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -12,26 +13,47 @@
   position: relative;
 
   .container {
-    max-width: 50%;
-    min-width: 50%;
+    max-width: 90%;
     margin: 0 auto;
     z-index: 1;
+  }
+
+  &.light {
+    background: #fff;
+  }
+  &.dark {
+    background: $DveryDarkBlue;
   }
 }
 
 .bg {
   width: 100%;
-  height: 40%;
+  height: 45vh;
+  max-height: 45vh;
 
   position: absolute;
   top: 0;
   left: 0;
 
   background: $primary-bg;
-  background-image: url("../../assets/images/bg-desktop-light.jpg");
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
 
   z-index: 0;
+}
+.bg.light {
+  background-image: url("../../assets/images/bg-desktop-light.jpg");
+}
+.bg.dark {
+  background-image: url("../../assets/images/bg-desktop-dark.jpg");
+}
+
+@media (min-width: 1024px) {
+  .App {
+    .container {
+      min-width: 50%;
+      max-width: 50%;
+    }
+  }
 }

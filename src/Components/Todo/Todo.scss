@@ -4,14 +4,11 @@
   align-items: center;
   padding: 1.5rem 1rem;
 
-  color: $LveryDarkGrayishBlue;
   font-size: 1.3rem;
   font-weight: 400;
 
-  border-bottom: 1px solid $LlightGrayishBlue;
-  background: #fff;
-
-  transition: 0.3s;
+  position: relative;
+  transition: 0.5s;
 
   &:hover .closing {
     display: block;
@@ -20,6 +17,11 @@
   .body {
     display: flex;
     align-items: center;
+
+    p {
+      user-select: none;
+      cursor: pointer;
+    }
   }
 
   .closing {
@@ -30,7 +32,11 @@
 
     display: none;
 
-    position: relative;
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+
+    transform: translateY(-50%);
 
     cursor: pointer;
     transition: 0.3s;
@@ -38,10 +44,10 @@
     animation: fade 0.5s;
 
     &:hover .line {
-      background: #000;
+      background: $LlightGrayishBlue;
     }
     &:active {
-      transform: scale(0.55);
+      transform: translateY(-50%) scale(0.55);
     }
     .line {
       position: absolute;
@@ -65,9 +71,24 @@
     }
   }
 }
-.todo.completed {
+.todo.light.completed {
   text-decoration: line-through;
   color: $LlightGrayishBlue;
+}
+.todo.dark.completed {
+  text-decoration: line-through;
+  color: $LveryDarkGrayishBlue;
+}
+
+.todo.light {
+  color: $LveryDarkGrayishBlue;
+  border-bottom: 1px solid $LlightGrayishBlue;
+  background: $LveryLightGray;
+}
+.todo.dark {
+  color: $LlightGrayishBlue;
+  border-bottom: 1px solid $LveryDarkGrayishBlue;
+  background: $DveryDarkDesaturatedBlue;
 }
 
 @keyframes fade {

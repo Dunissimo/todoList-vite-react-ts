@@ -1,17 +1,54 @@
-import { FC } from "react";
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  useContext,
+  useState,
+} from "react";
+import { Context } from "../../utils/Context";
 import "./CreateTodo.scss";
 
 const CreateTodo: FC = () => {
+  const {
+    view: { theme },
+    todos: { addTodo },
+  } = useContext(Context);
+
+  const [title, setTitle] = useState("");
+  const [checked, setChecked] = useState(false);
+
+  const submitHandler: FormEventHandler = (e) => {
+    e.preventDefault();
+    setTitle("");
+
+    addTodo({ id: Math.random() * 100, title, checked });
+  };
+
+  const changeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (e.target.id === "checkbox-main") {
+      setChecked(e.target.checked);
+    } else {
+      setTitle(e.target.value);
+    }
+  };
+
   return (
-    <section className="create-todo">
-      <input
-        className="custom-checkbox"
-        type="checkbox"
-        id="checkbox-main"
-        value="complete"
-      />
-      <label htmlFor="checkbox-main"></label>
-      <input type="text" placeholder="Create a new todo..." />
+    <section className={`create-todo ${theme}`}>
+      <form action="" onSubmit={submitHandler}>
+        <input
+          className="custom-checkbox"
+          type="checkbox"
+          id="checkbox-main"
+          onChange={changeHandler}
+        />
+        <label htmlFor="checkbox-main"></label>
+        <input
+          type="text"
+          value={title}
+          onChange={changeHandler}
+          placeholder="Create a new todo..."
+        />
+      </form>
     </section>
   );
 };
