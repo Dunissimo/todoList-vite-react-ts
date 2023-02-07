@@ -8,6 +8,8 @@ const initialCtx: IContext = {
   },
   todos: {
     list: [],
+    filter: "All",
+    changeFilter: () => {},
     addTodo: () => {},
     deleteTodo: () => {},
     changeCheckedStatus: () => {},
@@ -34,9 +36,14 @@ const initialTodoList = [
 const ContextProvider: FC<IProps> = ({ children }) => {
   const [theme, setTheme] = useState("dark");
   const [todos, setTodos] = useState<ITodo[]>(initialTodoList);
+  const [filter, setFilter] = useState("All");
 
   const toggleTheme = () => {
     setTheme((theme) => (theme === "light" ? "dark" : "light"));
+  };
+
+  const changeFilter = (sort: string) => {
+    setFilter(sort);
   };
 
   const addTodo = (todo: ITodo) => {
@@ -72,6 +79,8 @@ const ContextProvider: FC<IProps> = ({ children }) => {
     },
     todos: {
       list: todos,
+      filter,
+      changeFilter,
       addTodo,
       deleteTodo,
       changeCheckedStatus,

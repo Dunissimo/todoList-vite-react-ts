@@ -7,6 +7,8 @@
     border-top-right-radius: 5px;
   }
   .params .todo:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 

@@ -11,6 +11,8 @@ export interface IContext {
   };
   todos: {
     list: ITodo[];
+    filter: string;
+    changeFilter: (sort: string) => void;
     addTodo: (todo: ITodo) => void;
     deleteTodo: (id: number) => void;
     changeCheckedStatus: (id: number, checked: boolean) => void;
