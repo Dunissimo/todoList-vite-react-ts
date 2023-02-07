@@ -4,21 +4,24 @@
   align-items: center;
   padding: 1.5rem 1rem;
 
-  font-size: 1.3rem;
+  font-size: 1.1em;
   font-weight: 400;
 
   position: relative;
   transition: 0.5s;
 
-  &:hover .closing {
-    display: block;
-  }
+  cursor: pointer;
+
+  animation: todo 0.3s;
 
   .body {
+    width: 100%;
+
     display: flex;
     align-items: center;
 
     p {
+      max-width: 75%;
       user-select: none;
       cursor: pointer;
     }
@@ -29,8 +32,6 @@
     height: 25px;
 
     margin-right: 0.5rem;
-
-    display: none;
 
     position: absolute;
     top: 50%;
@@ -71,6 +72,11 @@
     }
   }
 }
+
+.todo.params {
+  cursor: auto;
+}
+
 .todo.light.completed {
   text-decoration: line-through;
   color: $LlightGrayishBlue;
@@ -84,11 +90,19 @@
   color: $LveryDarkGrayishBlue;
   border-bottom: 1px solid $LlightGrayishBlue;
   background: $LveryLightGray;
+
+  &:not(.params):hover {
+    background: $LveryLightGrayHover;
+  }
 }
 .todo.dark {
   color: $LlightGrayishBlue;
   border-bottom: 1px solid $LveryDarkGrayishBlue;
   background: $DveryDarkDesaturatedBlue;
+
+  &:not(.params):hover {
+    background: $DveryDarkGrayishBlueHover;
+  }
 }
 
 @keyframes fade {
@@ -97,5 +111,34 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes todo {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .todo {
+    font-size: 1.5em;
+    &:hover .closing {
+      display: block;
+    }
+    .body {
+      p {
+        max-width: 90%;
+      }
+
+      .closing {
+        display: none;
+      }
+    }
   }
 }

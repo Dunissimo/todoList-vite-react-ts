@@ -1,0 +1,51 @@
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .tab {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .tab.active {
+    animation: fade 0.3s;
+    color: $primary-blue;
+  }
+
+  &.light .tab:not(.active):hover {
+    color: $LveryDarkGrayishBlue;
+  }
+  &.dark .tab:not(.active):hover {
+    color: $DveryDarkBlue;
+  }
+
+  &.mobile {
+    margin-top: 1.5rem;
+    padding: 1rem;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    color: #fff;
+  }
+
+  &.light.mobile {
+    color: $LveryDarkGrayishBlue;
+    background: $LveryLightGray;
+  }
+  &.dark.mobile {
+    color: $LlightGrayishBlue;
+    background: $DveryDarkDesaturatedBlue;
+  }
+}
+
+@keyframes fade {
+  0% {
+    color: inherit;
+  }
+  100% {
+    color: $primary-blue;
+  }
+}

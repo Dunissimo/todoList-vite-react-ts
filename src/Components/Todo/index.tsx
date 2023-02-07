@@ -1,5 +1,5 @@
-import { ChangeEventHandler, FC, useContext, useState } from "react";
-import { Context } from "../../utils/Context";
+import { ChangeEventHandler, FC } from "react";
+import { useTodos, useView } from "../../utils/hooks";
 import { ITodo } from "../../utils/interfaces";
 import "./Todo.scss";
 
@@ -8,10 +8,8 @@ interface IProps {
 }
 
 const Todo: FC<IProps> = ({ todo }) => {
-  const {
-    view: { theme },
-    todos: { list, changeCheckedStatus, deleteTodo },
-  } = useContext(Context);
+  const { theme } = useView();
+  const { changeCheckedStatus, deleteTodo } = useTodos();
 
   const changeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
     changeCheckedStatus(todo.id, e.target.checked);

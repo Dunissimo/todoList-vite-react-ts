@@ -1,10 +1,15 @@
-import { FC, MouseEventHandler, useContext, useState } from "react";
-import { Context } from "../../utils/Context";
+import { FC, MouseEventHandler } from "react";
+import { useTodos, useView } from "../../utils/hooks";
 
-const Tabs: FC = () => {
-  const {
-    todos: { filter, changeFilter },
-  } = useContext(Context);
+import "./Tabs.scss";
+
+interface IProps {
+  classname: `mobile ${string}` | `desktop ${string}`;
+}
+
+const Tabs: FC<IProps> = ({ classname }) => {
+  const { theme } = useView();
+  const { filter, changeFilter } = useTodos();
 
   const clickHandler: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.currentTarget.dataset.active) {
@@ -13,7 +18,7 @@ const Tabs: FC = () => {
   };
 
   return (
-    <div className="filters">
+    <div className={`filters ${theme} ${classname}`}>
       <div
         onClick={clickHandler}
         className={`tab ${filter === "All" ? "active" : ""}`}

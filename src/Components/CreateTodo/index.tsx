@@ -1,18 +1,10 @@
-import {
-  ChangeEventHandler,
-  FC,
-  FormEventHandler,
-  useContext,
-  useState,
-} from "react";
-import { Context } from "../../utils/Context";
+import { ChangeEventHandler, FC, FormEventHandler, useState } from "react";
+import { useTodos, useView } from "../../utils/hooks";
 import "./CreateTodo.scss";
 
 const CreateTodo: FC = () => {
-  const {
-    view: { theme },
-    todos: { addTodo },
-  } = useContext(Context);
+  const { theme } = useView();
+  const { addTodo } = useTodos();
 
   const [title, setTitle] = useState("");
   const [checked, setChecked] = useState(false);

@@ -1,15 +1,15 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import "./index.scss";
 import "./App.scss";
 import Header from "../Header";
-import CreateTodo from "../CreateTodo/CreateTodo";
+import CreateTodo from "../CreateTodo";
 import TodoList from "../TodoList";
-import { Context } from "../../utils/Context";
+import { useView } from "../../utils/hooks";
+import Tabs from "../Tabs";
 
 const App: FC = () => {
-  const {
-    view: { theme },
-  } = useContext(Context);
+  const { theme } = useView();
+  const media = document.body.clientWidth < 1024;
 
   return (
     <>
@@ -19,7 +19,9 @@ const App: FC = () => {
           <Header />
           <CreateTodo />
           <TodoList />
+          {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
         </div>
+        <p className="dnd">Drag and drop to reorder list</p>
       </div>
     </>
   );

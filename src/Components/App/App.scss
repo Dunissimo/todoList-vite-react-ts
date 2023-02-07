@@ -18,11 +18,25 @@
     z-index: 1;
   }
 
+  .dnd {
+    margin-top: 2rem;
+
+    font-size: 1em;
+  }
+
   &.light {
     background: #fff;
+
+    .dnd {
+      color: $LdarkGrayishBlue;
+    }
   }
   &.dark {
     background: $DveryDarkBlue;
+
+    .dnd {
+      color: $DveryDarkGrayishBlueHover;
+    }
   }
 }
 

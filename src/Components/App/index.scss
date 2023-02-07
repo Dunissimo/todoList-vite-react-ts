@@ -122,6 +122,7 @@ body {
 
 body {
   font-family: $fontFamily;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .custom-checkbox {

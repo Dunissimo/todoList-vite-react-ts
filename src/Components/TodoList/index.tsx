@@ -1,14 +1,12 @@
-import { FC, useContext } from "react";
-import { Context } from "../../utils/Context";
+import { FC } from "react";
+import { useTodos, useView } from "../../utils/hooks";
 import Tabs from "../Tabs";
 import Todo from "../Todo";
 import "./TodoList.scss";
 
 const TodoList: FC = () => {
-  const {
-    view: { theme },
-    todos: { list, deleteAllTodos, filter },
-  } = useContext(Context);
+  const { theme } = useView();
+  const { list, deleteAllTodos, filter } = useTodos();
 
   const renderData = () => {
     const noData = (
@@ -32,11 +30,7 @@ const TodoList: FC = () => {
             return todo;
         }
       })
-      .map((todo, _, arr) => {
-        console.log(arr.length);
-
-        return <Todo key={todo.id} todo={todo} />;
-      });
+      .map((todo) => <Todo key={todo.id} todo={todo} />);
 
     if (haveData.length) {
       return haveData;
@@ -45,13 +39,15 @@ const TodoList: FC = () => {
     }
   };
 
+  const media = document.body.clientWidth < 1024;
+
   return (
     <section className={`todo-list`}>
       {renderData()}
       <div className="params">
-        <div className={`todo ${theme}`}>
+        <div className={`todo params ${theme}`}>
           <p>{list.filter((todo) => !todo.checked).length} items left</p>
-          <Tabs />
+          {media ? "" : <Tabs classname={`desktop ${theme}`} />}
           <div className="clear" onClick={deleteAllTodos}>
             <button>Clear Completed</button>
           </div>

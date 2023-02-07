@@ -1,13 +1,12 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import "./Header.scss";
 import moon from "../../assets/images/icon-moon.svg";
 import sun from "../../assets/images/icon-sun.svg";
-import { Context } from "../../utils/Context";
+import { useView } from "../../utils/hooks";
 
 const Header: FC = () => {
-  const {
-    view: { theme, toggleTheme },
-  } = useContext(Context);
+  const { theme, toggleTheme } = useView();
+
   return (
     <header className="header">
       <h1>TODO</h1>
