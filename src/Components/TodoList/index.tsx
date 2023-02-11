@@ -8,6 +8,10 @@ const TodoList: FC = () => {
   const { theme } = useView();
   const { list, deleteAllTodos, filter } = useTodos();
 
+  const dragEndHandler = () => {
+    console.log("Profit");
+  };
+
   const renderData = () => {
     const noData = (
       <section className={`todo-list`}>
@@ -42,7 +46,7 @@ const TodoList: FC = () => {
   const media = document.body.clientWidth < 1024;
 
   return (
-    <section className={`todo-list`}>
+    <section className={`todo-list`} onDragEnd={dragEndHandler}>
       {renderData()}
       <div className="params">
         <div className={`todo params ${theme}`}>

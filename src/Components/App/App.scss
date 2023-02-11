@@ -14,6 +14,7 @@
 
   .container {
     max-width: 90%;
+    width: 100%;
     margin: 0 auto;
     z-index: 1;
   }
@@ -63,17 +64,24 @@
   background-image: url("../../assets/images/bg-mobile-dark.jpg");
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .App {
     .container {
-      min-width: 50%;
-      max-width: 50%;
+      max-width: 70%;
     }
     .bg.light {
       background-image: url("../../assets/images/bg-desktop-light.jpg");
     }
     .bg.dark {
       background-image: url("../../assets/images/bg-desktop-dark.jpg");
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .App {
+    .container {
+      max-width: 50%;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import { IContext, ITodo } from "./interfaces";
 
 const initialCtx: IContext = {
@@ -23,19 +23,13 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const initialTodoList = [
-  { id: Math.random() * 100, title: "Learn Vite + React +TS", checked: false },
-  { id: Math.random() * 100, title: "Go to college", checked: false },
-  {
-    id: Math.random() * 100,
-    title: "Become Senior Frontend Dev",
-    checked: false,
-  },
-];
-
 const ContextProvider: FC<IProps> = ({ children }) => {
   const [theme, setTheme] = useState("dark");
-  const [todos, setTodos] = useState<ITodo[]>(initialTodoList);
+
+  const [todos, setTodos] = useState<ITodo[]>(
+    JSON.parse(localStorage.getItem("todos")!) || []
+  );
+
   const [filter, setFilter] = useState("All");
 
   const toggleTheme = () => {
@@ -46,7 +40,7 @@ const ContextProvider: FC<IProps> = ({ children }) => {
     setFilter(sort);
   };
 
-  const addTodo = (todo: ITodo) => {
+  const addTodo = async (todo: ITodo) => {
     setTodos((todos) => [todo, ...todos]);
   };
 
@@ -69,8 +63,15 @@ const ContextProvider: FC<IProps> = ({ children }) => {
       return todos.filter((todo) => todo.id !== id);
     });
   };
-  const deleteCompletedTodos = () =>
+  const deleteCompletedTodos = () => {
     setTodos((todos) => todos.filter((todo) => !todo.checked));
+  };
+
+  const _updateLocalStorage = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+
+  useEffect(() => _updateLocalStorage(), [todos]);
 
   const ctx = {
     view: {
