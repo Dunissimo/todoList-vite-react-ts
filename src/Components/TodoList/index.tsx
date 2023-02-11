@@ -1,16 +1,11 @@
 import { FC } from "react";
 import { useTodos, useView } from "../../utils/hooks";
-import Tabs from "../Tabs";
 import Todo from "../Todo";
 import "./TodoList.scss";
 
 const TodoList: FC = () => {
   const { theme } = useView();
-  const { list, deleteAllTodos, filter } = useTodos();
-
-  const dragEndHandler = () => {
-    console.log("Profit");
-  };
+  const { list, filter } = useTodos();
 
   const renderData = () => {
     const noData = (
@@ -43,22 +38,7 @@ const TodoList: FC = () => {
     }
   };
 
-  const media = document.body.clientWidth < 1024;
-
-  return (
-    <section className={`todo-list`} onDragEnd={dragEndHandler}>
-      {renderData()}
-      <div className="params">
-        <div className={`todo params ${theme}`}>
-          <p>{list.filter((todo) => !todo.checked).length} items left</p>
-          {media ? "" : <Tabs classname={`desktop ${theme}`} />}
-          <div className="clear" onClick={deleteAllTodos}>
-            <button>Clear Completed</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <div>{renderData()}</div>;
 };
 
 export default TodoList;

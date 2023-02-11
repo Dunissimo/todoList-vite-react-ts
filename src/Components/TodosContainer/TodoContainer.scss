@@ -1,0 +1,29 @@
+.params .todo:last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  font-size: 1em;
+  color: $LdarkGrayishBlue;
+}
+
+.clear button {
+  border: none;
+  outline: none;
+  background: none;
+
+  cursor: pointer;
+
+  font-size: 1em;
+  color: $LdarkGrayishBlue;
+
+  transition: 0.5s;
+
+  &:hover {
+    color: $LveryDarkGrayishBlue;
+  }
+  &:active {
+    transform: scale(0.8);
+  }
+}

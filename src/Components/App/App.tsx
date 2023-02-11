@@ -3,7 +3,7 @@ import "./index.scss";
 import "./App.scss";
 import Header from "../Header";
 import CreateTodo from "../CreateTodo";
-import TodoList from "../TodoList";
+import TodosContainer from "../TodosContainer";
 import { useView } from "../../utils/hooks";
 import Tabs from "../Tabs";
 
@@ -18,7 +18,7 @@ const App: FC = () => {
         <div className="container">
           <Header />
           <CreateTodo />
-          <TodoList />
+          <TodosContainer />
           {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
         </div>
         <p className="dnd">Drag and drop to reorder list</p>
