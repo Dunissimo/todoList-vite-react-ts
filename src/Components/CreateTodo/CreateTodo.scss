@@ -1,6 +1,6 @@
 .create-todo {
   margin-bottom: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 1em;
 
   border-radius: 5px;
 
@@ -47,3 +47,9 @@
     font-family: $fontFamily;
   }
 }
+
+// @media (min-width: 1660px) {
+//   .create-todo {
+//     font-size: 1.5em;
+//   }
+// }
