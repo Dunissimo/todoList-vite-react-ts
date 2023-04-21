@@ -21,7 +21,6 @@ const App: FC = () => {
           <TodosContainer />
           {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
         </div>
-        <p className="dnd">Drag and drop to reorder list</p>
       </div>
     </>
   );
