@@ -1,11 +1,7 @@
 import { useContext } from "react";
-import { Context } from "./Context";
+import { ViewContext } from "../context/ViewContext";
+import { TodosContext } from "../context/TodosContext";
 
-export const useView = () => {
-  const { view } = useContext(Context);
-  return view;
-};
-export const useTodos = () => {
-  const { todos } = useContext(Context);
-  return todos;
-};
+export const useView = () => useContext(ViewContext);
+
+export const useTodos = () => useContext(TodosContext);
