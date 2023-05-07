@@ -67,7 +67,7 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
   const ctx = {
     todos,
     currentTodo,
-    setCurrentTodo: (todo: ITodo) => setCurrent(todo),
+    setCurrentTodo: (todo: ITodo | null) => setCurrent(todo),
     filter,
     changeFilter: (string: string) => setFilter(string),
     addTodo,

@@ -10,7 +10,7 @@
   position: relative;
   transition: 0.5s;
 
-  cursor: pointer;
+  cursor: grab;
 
   animation: todo 0.3s;
 
@@ -90,19 +90,11 @@
   color: $LveryDarkGrayishBlue;
   border-bottom: 1px solid $LlightGrayishBlue;
   background: $LveryLightGray;
-
-  &:not(.params):hover {
-    background: $LveryLightGrayHover;
-  }
 }
 .todo.dark {
   color: $LlightGrayishBlue;
   border-bottom: 1px solid $LveryDarkGrayishBlue;
   background: $DveryDarkDesaturatedBlue;
-
-  &:not(.params):hover {
-    background: $DveryDarkGrayishBlueHover;
-  }
 }
 
 @keyframes fade {

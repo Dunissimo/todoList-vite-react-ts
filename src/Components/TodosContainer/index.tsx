@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTodos, useView } from "../../utils/hooks";
 import Tabs from "../Tabs";
-import Todo from "../Todo";
+import Todo from "../Todo/Todo";
 import TodoList from "../TodoList";
 import "./TodoContainer.scss";
 import { ITodo } from "../../utils/interfaces";

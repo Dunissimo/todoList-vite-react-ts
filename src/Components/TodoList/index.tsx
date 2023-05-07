@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useTodos, useView } from "../../utils/hooks";
-import Todo from "../Todo";
+import Todo from "../Todo/Todo";
 import "./TodoList.scss";
 
 const TodoList: FC = () => {

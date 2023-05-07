@@ -12,7 +12,7 @@ export interface IViewContext {
 export interface ITodosContext {
   todos: ITodo[];
   currentTodo: ITodo | null;
-  setCurrentTodo: (todo: ITodo) => void;
+  setCurrentTodo: (todo: ITodo | null) => void;
   filter: string;
   changeFilter: (sort: string) => void;
   addTodo: (todo: ITodo) => void;

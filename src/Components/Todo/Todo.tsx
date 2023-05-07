@@ -21,8 +21,40 @@ const Todo: FC<IProps> = ({ todo }) => {
     deleteTodo(todo.id);
   };
 
+  const { currentTodo, setCurrentTodo, todos, updateTodos } = useTodos();
+
   return (
-    <section className={`todo ${todo.checked ? "completed" : ""} ${theme}`}>
+    <section
+      onDragStart={(e) => {
+        e.currentTarget.style.opacity = "0.5";
+
+        setCurrentTodo(todo);
+      }}
+      onDragEnter={(e) => {
+        const currentIndex = todos.findIndex(
+          (todo) => todo.id === currentTodo?.id
+        );
+        const index = todos.findIndex(
+          (todo) => todo.id === Number(e.currentTarget.dataset.id)
+        );
+
+        const newArr = [...todos];
+
+        [newArr[currentIndex], newArr[index]] = [
+          newArr[index],
+          newArr[currentIndex],
+        ];
+
+        updateTodos(newArr);
+      }}
+      onDragEnd={(e) => {
+        e.currentTarget.style.opacity = "1";
+        setCurrentTodo(null);
+      }}
+      draggable
+      data-id={todo.id}
+      className={`todo ${todo.checked ? "completed" : ""} ${theme}`}
+    >
       <div className="body">
         <input
           className="custom-checkbox"

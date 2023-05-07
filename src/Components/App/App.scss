@@ -63,6 +63,12 @@
   background-image: url("../../assets/images/bg-mobile-dark.jpg");
 }
 
+.tip {
+  color: white;
+  margin-top: 2rem;
+  opacity: 0.5;
+}
+
 @media (min-width: 768px) {
   .App {
     .container {

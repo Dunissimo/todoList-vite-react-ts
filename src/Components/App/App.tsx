@@ -21,9 +21,11 @@ const App: FC = () => {
         <TodosContextProvider>
           <CreateTodo />
           <TodosContainer />
-          {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
+          {media && <Tabs classname={`mobile ${theme}`} />}
         </TodosContextProvider>
       </div>
+
+      {media || <p className="tip">Drag and drop to reorder list</p>}
     </div>
   );
 };
