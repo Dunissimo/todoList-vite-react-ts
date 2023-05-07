@@ -1,8 +1,15 @@
 import { createContext, FC, useEffect, useState } from "react";
 import { ITodo, ITodosContext } from "../utils/interfaces";
+import { validateTodo } from "../utils/helpers";
 
 const initialCtx: ITodosContext = {
   todos: [],
+  currentTodo: {
+    checked: false,
+    id: 0,
+    title: "",
+  },
+  setCurrentTodo: () => {},
   filter: "All",
   changeFilter: () => {},
   addTodo: () => {},
@@ -23,37 +30,31 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
     JSON.parse(localStorage.getItem("todos")!) || []
   );
   const [filter, setFilter] = useState("All");
+  const [currentTodo, setCurrent] = useState<ITodo | null>(null);
 
   const addTodo = (todo: ITodo) => {
-    setTodos((todos) => [todo, ...todos]);
-  };
-  const updateTodos = (todos: ITodo[]) => {
-    setTodos(todos);
+    if (validateTodo(todo)) {
+      setTodos((todos) => [todo, ...todos]);
+    } else {
+      return;
+    }
   };
   const deleteTodo = (id: number) => {
-    setTodos((todos) => {
-      return todos.filter((todo) => todo.id !== id);
-    });
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
   };
   const deleteCompletedTodos = () => {
     setTodos((todos) => todos.filter((todo) => !todo.checked));
   };
 
-  const changeFilter = (sort: string) => {
-    setFilter(sort);
-  };
-
   const changeCheckedStatus = (id: number, checked: boolean) => {
     setTodos((todos) => {
-      const newArr = todos.map((todo) => {
+      return todos.map((todo) => {
         if (todo.id === id) {
           todo.checked = checked;
           return todo;
         }
         return todo;
       });
-
-      return newArr;
     });
   };
 
@@ -65,10 +66,12 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
 
   const ctx = {
     todos,
+    currentTodo,
+    setCurrentTodo: (todo: ITodo) => setCurrent(todo),
     filter,
-    changeFilter,
+    changeFilter: (string: string) => setFilter(string),
     addTodo,
-    updateTodos,
+    updateTodos: (todos: ITodo[]) => setTodos(todos),
     deleteTodo,
     changeCheckedStatus,
     deleteCompletedTodos,
