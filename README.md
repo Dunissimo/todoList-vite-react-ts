@@ -1,5 +1,5 @@
 # [See my work](https://todolist-with-vite.onrender.com/) | [Результат](https://todolist-with-vite.onrender.com/)
-# This project was created using Vite
+# This project was created using Vite!
 
 ## Available Scripts
 
