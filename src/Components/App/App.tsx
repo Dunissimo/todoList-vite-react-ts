@@ -4,29 +4,27 @@ import "./App.scss";
 import Header from "../Header";
 import CreateTodo from "../CreateTodo";
 import TodosContainer from "../TodosContainer";
-import { useView } from "../../utils/hooks";
+import { useRezise, useView } from "../../utils/hooks";
 import Tabs from "../Tabs";
 import TodosContextProvider from "../../context/TodosContext";
 
 const App: FC = () => {
   const { theme } = useView();
-  const media = document.body.clientWidth < 1024;
+  const media = useRezise() < 1024;
 
   return (
-    <>
-      <div className={`App ${theme}`}>
-        <div className={`bg ${theme}`}></div>
-        <div className="container">
-          <Header />
+    <div className={`App ${theme}`}>
+      <div className={`bg ${theme}`}></div>
+      <div className="container">
+        <Header />
 
-          <TodosContextProvider>
-            <CreateTodo />
-            <TodosContainer />
-            {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
-          </TodosContextProvider>
-        </div>
+        <TodosContextProvider>
+          <CreateTodo />
+          <TodosContainer />
+          {media ? <Tabs classname={`mobile ${theme}`} /> : ""}
+        </TodosContextProvider>
       </div>
-    </>
+    </div>
   );
 };
 

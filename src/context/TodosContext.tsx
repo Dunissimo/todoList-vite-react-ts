@@ -6,9 +6,10 @@ const initialCtx: ITodosContext = {
   filter: "All",
   changeFilter: () => {},
   addTodo: () => {},
+  updateTodos: () => {},
   deleteTodo: () => {},
   changeCheckedStatus: () => {},
-  deleteAllTodos: () => {},
+  deleteCompletedTodos: () => {},
 };
 
 export const TodosContext = createContext(initialCtx);
@@ -23,12 +24,23 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
   );
   const [filter, setFilter] = useState("All");
 
-  const changeFilter = (sort: string) => {
-    setFilter(sort);
+  const addTodo = (todo: ITodo) => {
+    setTodos((todos) => [todo, ...todos]);
+  };
+  const updateTodos = (todos: ITodo[]) => {
+    setTodos(todos);
+  };
+  const deleteTodo = (id: number) => {
+    setTodos((todos) => {
+      return todos.filter((todo) => todo.id !== id);
+    });
+  };
+  const deleteCompletedTodos = () => {
+    setTodos((todos) => todos.filter((todo) => !todo.checked));
   };
 
-  const addTodo = async (todo: ITodo) => {
-    setTodos((todos) => [todo, ...todos]);
+  const changeFilter = (sort: string) => {
+    setFilter(sort);
   };
 
   const changeCheckedStatus = (id: number, checked: boolean) => {
@@ -45,15 +57,6 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
     });
   };
 
-  const deleteTodo = (id: number) => {
-    setTodos((todos) => {
-      return todos.filter((todo) => todo.id !== id);
-    });
-  };
-  const deleteCompletedTodos = () => {
-    setTodos((todos) => todos.filter((todo) => !todo.checked));
-  };
-
   const _updateLocalStorage = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
@@ -65,9 +68,10 @@ const TodosContextProvider: FC<IProps> = ({ children }) => {
     filter,
     changeFilter,
     addTodo,
+    updateTodos,
     deleteTodo,
     changeCheckedStatus,
-    deleteAllTodos: deleteCompletedTodos,
+    deleteCompletedTodos,
   };
 
   return <TodosContext.Provider value={ctx}>{children}</TodosContext.Provider>;

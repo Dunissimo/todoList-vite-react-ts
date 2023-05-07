@@ -8,7 +8,7 @@ import { ITodo } from "../../utils/interfaces";
 
 const TodosContainer: FC = () => {
   const { theme } = useView();
-  const { todos, deleteAllTodos } = useTodos();
+  const { todos, deleteCompletedTodos: deleteAllTodos } = useTodos();
 
   const media = document.body.clientWidth < 1024;
 

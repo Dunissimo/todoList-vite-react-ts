@@ -14,7 +14,8 @@ export interface ITodosContext {
   filter: string;
   changeFilter: (sort: string) => void;
   addTodo: (todo: ITodo) => void;
+  updateTodos: (todos: ITodo[]) => void;
   deleteTodo: (id: number) => void;
   changeCheckedStatus: (id: number, checked: boolean) => void;
-  deleteAllTodos: () => void;
+  deleteCompletedTodos: () => void;
 }
