@@ -4,10 +4,11 @@ import Tabs from "../Tabs";
 import Todo from "../Todo";
 import TodoList from "../TodoList";
 import "./TodoContainer.scss";
+import { ITodo } from "../../utils/interfaces";
 
 const TodosContainer: FC = () => {
   const { theme } = useView();
-  const { list, deleteAllTodos } = useTodos();
+  const { todos, deleteAllTodos } = useTodos();
 
   const media = document.body.clientWidth < 1024;
 
@@ -16,7 +17,9 @@ const TodosContainer: FC = () => {
       <TodoList />
       <div className="params">
         <div className={`todo params ${theme}`}>
-          <p>{list.filter((todo) => !todo.checked).length} items left</p>
+          <p>
+            {todos.filter((todo: ITodo) => !todo.checked).length} items left
+          </p>
           {media ? "" : <Tabs classname={`desktop ${theme}`} />}
           <div className="clear" onClick={deleteAllTodos}>
             <button>Clear Completed</button>

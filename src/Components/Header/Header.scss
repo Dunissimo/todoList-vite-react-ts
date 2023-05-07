@@ -1,12 +1,13 @@
 .header {
   width: 100%;
-  z-index: 1;
+
+  margin-bottom: 130px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 2rem;
+  z-index: 1;
 
   h1 {
     font-size: 2em;
@@ -26,5 +27,11 @@
     &:hover {
       transform: scale(1.05);
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 75px;
   }
 }

@@ -5,7 +5,7 @@ import "./TodoList.scss";
 
 const TodoList: FC = () => {
   const { theme } = useView();
-  const { list, filter } = useTodos();
+  const { todos, filter } = useTodos();
 
   const renderData = () => {
     const noData = (
@@ -16,7 +16,7 @@ const TodoList: FC = () => {
       </section>
     );
 
-    const haveData = list
+    const haveData = todos
       .filter((todo) => {
         switch (filter) {
           case "All":
