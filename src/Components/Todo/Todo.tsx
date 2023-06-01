@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC } from "react";
+import { ChangeEventHandler, DragEventHandler, FC } from "react";
 import { useTodos, useView } from "../../utils/hooks";
 import { ITodo } from "../../utils/interfaces";
 import "./Todo.scss";
@@ -20,37 +20,38 @@ const Todo: FC<IProps> = ({ todo }) => {
   const deleteHandler = () => {
     deleteTodo(todo.id);
   };
+  const dragStartHandler: DragEventHandler<HTMLElement> = (e) => {
+    e.currentTarget.style.opacity = "0.5";
+
+    setCurrentTodo(todo);
+  };
+  const dragEnterHandler: DragEventHandler<HTMLElement> = (e) => {
+    const currentIndex = todos.findIndex((todo) => todo.id === currentTodo?.id);
+    const index = todos.findIndex(
+      (todo) => todo.id === Number(e.currentTarget.dataset.id)
+    );
+
+    const newArr = [...todos];
+
+    [newArr[currentIndex], newArr[index]] = [
+      newArr[index],
+      newArr[currentIndex],
+    ];
+
+    updateTodos(newArr);
+  };
+  const dragEndHandler: DragEventHandler<HTMLElement> = (e) => {
+    e.currentTarget.style.opacity = "1";
+    setCurrentTodo(null);
+  };
 
   const { currentTodo, setCurrentTodo, todos, updateTodos } = useTodos();
 
   return (
     <section
-      onDragStart={(e) => {
-        e.currentTarget.style.opacity = "0.5";
-
-        setCurrentTodo(todo);
-      }}
-      onDragEnter={(e) => {
-        const currentIndex = todos.findIndex(
-          (todo) => todo.id === currentTodo?.id
-        );
-        const index = todos.findIndex(
-          (todo) => todo.id === Number(e.currentTarget.dataset.id)
-        );
-
-        const newArr = [...todos];
-
-        [newArr[currentIndex], newArr[index]] = [
-          newArr[index],
-          newArr[currentIndex],
-        ];
-
-        updateTodos(newArr);
-      }}
-      onDragEnd={(e) => {
-        e.currentTarget.style.opacity = "1";
-        setCurrentTodo(null);
-      }}
+      onDragStart={dragStartHandler}
+      onDragEnter={dragEnterHandler}
+      onDragEnd={dragEndHandler}
       draggable
       data-id={todo.id}
       className={`todo ${todo.checked ? "completed" : ""} ${theme}`}
