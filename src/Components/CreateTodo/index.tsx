@@ -1,5 +1,6 @@
 import { ChangeEventHandler, FC, FormEventHandler, useState } from "react";
 import { useTodos, useView } from "../../utils/hooks";
+
 import "./CreateTodo.scss";
 
 const CreateTodo: FC = () => {

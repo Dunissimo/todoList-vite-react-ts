@@ -1,8 +1,10 @@
 import { FC } from "react";
-import "./Header.scss";
+import { useView } from "../../utils/hooks";
+
 import moon from "../../assets/images/icon-moon.svg";
 import sun from "../../assets/images/icon-sun.svg";
-import { useView } from "../../utils/hooks";
+
+import "./Header.scss";
 
 const Header: FC = () => {
   const { theme, toggleTheme } = useView();

@@ -1,6 +1,7 @@
 import { ChangeEventHandler, DragEventHandler, FC } from "react";
 import { useTodos, useView } from "../../utils/hooks";
 import { ITodo } from "../../utils/interfaces";
+
 import "./Todo.scss";
 
 interface IProps {

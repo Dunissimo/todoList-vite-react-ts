@@ -1,12 +1,13 @@
 import { FC } from "react";
-import "./index.scss";
-import "./App.scss";
 import Header from "../Header";
 import CreateTodo from "../CreateTodo";
 import TodosContainer from "../TodosContainer";
-import { useRezise, useView } from "../../utils/hooks";
 import Tabs from "../Tabs";
 import TodosContextProvider from "../../context/TodosContext";
+import { useRezise, useView } from "../../utils/hooks";
+
+import "./index.scss";
+import "./App.scss";
 
 const App: FC = () => {
   const { theme } = useView();

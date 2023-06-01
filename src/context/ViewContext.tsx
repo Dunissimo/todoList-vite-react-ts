@@ -1,5 +1,5 @@
-import { createContext, FC, useEffect, useState } from "react";
-import { ITodo, IViewContext } from "../utils/interfaces";
+import { createContext, FC, useState } from "react";
+import { IViewContext } from "../utils/interfaces";
 
 const initialCtx: IViewContext = {
   theme: "dark",

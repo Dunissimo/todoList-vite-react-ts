@@ -1,8 +1,6 @@
-import { EventHandler, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ViewContext } from "../context/ViewContext";
 import { TodosContext } from "../context/TodosContext";
-import { ReactEventHandler } from "react";
-import { UIEventHandler } from "react";
 
 export const useView = () => useContext(ViewContext);
 
